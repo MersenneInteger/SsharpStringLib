@@ -134,7 +134,8 @@ push StringSplit
                           
 callback function CallbackHandler(string values, integer index)
 {
-    SplitStrOut[index+1] = values;
+    if((index+1) <= getNumArrayRows(SplitStrOut))
+        SplitStrOut[index+1] = values;
 }
 
 push StringTrim
