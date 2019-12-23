@@ -30,18 +30,18 @@ analog_input     _skip_,
                  _skip_;
                   
 string_input     SplitStr[100],
-				 SplitStrDelimeter[100],
-				 _skip_,
+		 SplitStrDelimeter[100],
+		 _skip_,
                  TrimStr[100],
-				 _skip_,
+		 _skip_,
                  IndexOfStr[100],
                  IndexOfValue[100],
                  _skip_,
-				 CompareStrs[2][100],
-				 _skip_,
-				 ContainsStrs[2][100],
-				 _skip_,
-				 EqualsStrs[2][100],
+		 CompareStrs[2][100],
+		 _skip_,
+		 ContainsStrs[2][100],
+		 _skip_,
+		 EqualsStrs[2][100],
                  _skip_,
                  InsertStrs[2][100],
                  _skip_,
@@ -52,11 +52,11 @@ string_input     SplitStr[100],
                  SubStringStrs[1][100];
                   
 string_output    InsertStrOut,
-				 RemoveStrOut,
-				 ReplaceStrOut,
-				 SubStringStrOut,
-				 TrimStrOut,
-				 SplitStrOut[10];
+		 RemoveStrOut,
+		 ReplaceStrOut,
+		 SubStringStrOut,
+		 TrimStrOut,
+		 SplitStrOut[10];
                  
 StringLib StrLib;
 /*******************************************************************************************
@@ -149,5 +149,5 @@ push StringTrim
 function main()
 {
 	waitForInitializationComplete();
-    registerDelegate(StrLib, CallbackEvent, CallbackHandler);
+    	registerDelegate(StrLib, CallbackEvent, CallbackHandler);
 }
