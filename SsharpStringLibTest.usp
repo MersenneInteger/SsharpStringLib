@@ -1,0 +1,152 @@
+#PRINT_TO_TRACE
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+#ENCODING_ASCII
+/*******************************************************************************************
+  Include Libraries
+*******************************************************************************************/
+#user_simplsharp_library "SsharpStringLib"
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+*******************************************************************************************/
+digital_input     StringCompare,
+                  StringContains,
+                  StringEquals,
+                  StringIndexOf,
+                  StringInsert,
+                  StringRemove,
+                  StringReplace,
+                  StringSubString,
+                  StringSplit,
+                  StringTrim;
+                  
+analog_input     _skip_, 
+                 StringInsertPosition,
+                 StringRemoveIndex,
+                 StringRemoveCount,
+                 StringSubStringStart,
+                 StringSubStringLength,
+                 _skip_;
+                  
+string_input     SplitStr[100],
+				 SplitStrDelimeter[100],
+				 _skip_,
+                 TrimStr[100],
+				 _skip_,
+                 IndexOfStr[100],
+                 IndexOfValue[100],
+                 _skip_,
+				 CompareStrs[2][100],
+				 _skip_,
+				 ContainsStrs[2][100],
+				 _skip_,
+				 EqualsStrs[2][100],
+                 _skip_,
+                 InsertStrs[2][100],
+                 _skip_,
+                 RemoveStrs[1][100],
+                 _skip_,
+                 ReplaceStrs[3][100],
+                 _skip_,
+                 SubStringStrs[1][100];
+                  
+string_output    InsertStrOut,
+				 RemoveStrOut,
+				 ReplaceStrOut,
+				 SubStringStrOut,
+				 TrimStrOut,
+				 SplitStrOut[10];
+                 
+StringLib StrLib;
+/*******************************************************************************************
+  Event Handlers
+*******************************************************************************************/
+push StringCompare
+{
+    signed_integer result;
+    result = StrLib.Compare(CompareStrs[1], CompareStrs[2]);
+    if(result = 0)
+        print("%s = %s",CompareStrs[1], CompareStrs[2]); 
+    else if(result > 0)
+        print("%s > %s",CompareStrs[1], CompareStrs[2]);
+    else if(result < 0)
+        print("%s < %s",CompareStrs[1], CompareStrs[2]);
+}
+
+push StringContains
+{
+    integer result;
+    result = StrLib.Contains(ContainsStrs[1], ContainsStrs[2]);
+    if(result)
+        print("%s contains %s", ContainsStrs[1], ContainsStrs[2]);
+    else
+        print("%s does not contain %s", ContainsStrs[1], ContainsStrs[2]);
+}
+
+push StringEquals
+{
+    integer result;
+    result = StrLib.Equals(EqualsStrs[1], EqualsStrs[2]);
+    if(result)
+        print("%s equals %s", EqualsStrs[1], EqualsStrs[2]);
+    else
+        print("%s does not equal %s", EqualsStrs[1], EqualsStrs[2]);
+}
+
+push StringIndexOf
+{
+    integer result;
+    if(!find(IndexOfStr, IndexOfValue))
+    {
+        print("Error %s does not contain %s",IndexOfStr, IndexOfValue);
+        terminateEvent;
+    }
+    result = StrLib.IndexOf(IndexOfStr, IndexOfValue);
+    print("index of %s in %s = %u", IndexOfValue, IndexOfStr, result);           
+}
+
+push StringInsert
+{
+    InsertStrOut = StrLib.InsertString(InsertStrs[1], InsertStrs[2], StringInsertPosition);
+}
+
+push StringRemove
+{
+    RemoveStrOut = StrLib.RemoveString(RemoveStrs[1], StringRemoveIndex, StringRemoveCount);
+}
+
+push StringReplace
+{
+    ReplaceStrOut = StrLib.ReplaceString(ReplaceStrs[1],ReplaceStrs[2],ReplaceStrs[3]);
+}
+
+push StringSubString
+{
+    SubStringStrOut = StrLib.SubString(SubStringStrs[1], StringSubStringStart, StringSubStringLength);
+}
+
+push StringSplit
+{
+    setArray(SplitStrOut, "");
+    StrLib.SplitString(SplitStr, SplitStrDelimeter); 
+}
+                          
+callback function CallbackHandler(string values, integer index)
+{
+    SplitStrOut[index+1] = values;
+}
+
+push StringTrim
+{
+    TrimStrOut = StrLib.TrimString(TrimStr);
+}
+
+/*******************************************************************************************
+  Main()
+*******************************************************************************************/
+function main()
+{
+	waitForInitializationComplete();
+    registerDelegate(StrLib, CallbackEvent, CallbackHandler);
+}

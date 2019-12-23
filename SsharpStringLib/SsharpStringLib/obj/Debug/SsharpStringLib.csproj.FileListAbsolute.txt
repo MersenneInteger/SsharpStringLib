@@ -1,0 +1,7 @@
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\bin\Debug\SsharpStringLib.dll
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\bin\Debug\SsharpStringLib.pdb
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\bin\Debug\SimplSharpCustomAttributesInterface.dll
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\bin\Debug\SimplSharpHelperInterface.dll
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\obj\Debug\ResolveAssemblyReference.cache
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\obj\Debug\SsharpStringLib.dll
+D:\C#\s#\SsharpStringLib\SsharpStringLib\SsharpStringLib\obj\Debug\SsharpStringLib.pdb
